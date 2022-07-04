@@ -1,0 +1,90 @@
+﻿@model MyWebProject.Models.ViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<h2>New Person</h2>
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Enter Person's Informations</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">Name</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-minlength="3" id="Name" name="Name" onkeypress="return ((event.charCode >= 65 & amp;& amp; event.charCode <= 90) || (event.charCode >= 97 & amp;& amp; event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 231) || (event.charCode == 305) || (event.charCode == 351) || (event.charCode == 246) || (event.charCode == 252) || (event.charCode == 287) || (event.charCode == 304) || (event.charCode == 199) || (event.charCode == 350) || (event.charCode == 214) || (event.charCode == 220) || (event.charCode == 286))" required="required" type="text" value="">
+            <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Surname">Surname</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-minlength="3" id="Surname" name="Surname" onkeypress="return ((event.charCode >= 65 &amp;&amp; event.charCode <= 90) || (event.charCode >= 97 &amp;&amp; event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 231) || (event.charCode == 305) ||(event.charCode == 351) || (event.charCode == 246) || (event.charCode == 252) ||(event.charCode == 287) || (event.charCode == 304) || (event.charCode == 199) || (event.charCode == 350) ||(event.charCode == 214) || (event.charCode == 220) ||(event.charCode == 286))" required="required" type="text" value="">
+            <span class="field-validation-valid text-danger" data-valmsg-for="Surname" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="BirthDate">BirthDate</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-date="The field BirthDate must be a date." id="BirthDate" name="BirthDate" onfocus="this.max=new Date().toISOString().split('T')[0]" type="date" value="">
+            <span class="field-validation-valid text-danger" data-valmsg-for="BirthDate" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Gender">Gender</label>
+        <div class="col-md-10">
+            <select class="form-control" required id="Gender" name="Gender">
+                <option value="">Select Gender</option>
+
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+
+        <label class="control-label col-md-2" for="City">City</label>
+        <div class="col-md-10">
+
+            <select class="form-control" id="Cities" name="City">
+
+                @foreach (var city in Model.Cities)
+                {
+                    <option value="@city.CityName">
+                        @city.CityName
+                    </option>
+                    }
+
+            </select>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="City" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-success" />
+        </div>
+    </div>
+</div>}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")  
+}
